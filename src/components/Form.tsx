@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./Form.css";
 import Switch from "react-switch";
 
+import Api from "../api";
+
 const defaultFormData = {
   latitude: "",
   longitude: "",
@@ -24,13 +26,21 @@ export default function Form() {
   const handleChange = (nextChecked: boolean) => {
     setChecked(nextChecked);
     formData.alternativeSource = !formData.alternativeSource;
-    console.log(formData);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormData(formData);
-    console.log(formData);
+
+    const api = new Api();
+    const fetchApi = async () => {
+      const data =
+        formData.alternativeSource === true
+          ? await api.fetchAlternativeApi()
+          : await api.fetchPrimaryApi();
+      return data;
+    };
+    const weatherData = fetchApi();
   };
 
   return (
