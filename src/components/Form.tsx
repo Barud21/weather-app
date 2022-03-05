@@ -13,10 +13,30 @@ export default function Form() {
   const { latitude, longitude, alternativeSource } = formData;
   const [checked, setChecked] = useState(alternativeSource);
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+    console.log(formData);
+  };
+
+  const handleChange = (nextChecked: boolean) => {
+    setChecked(nextChecked);
+    formData.alternativeSource = !formData.alternativeSource;
+    console.log(formData);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormData(formData);
+    console.log(formData);
+  };
+
   return (
     <>
       <h2>Provide latitude and longitude</h2>
-      <form>
+      <form onSubmit={onSubmit}>
         <label htmlFor="latitude">LAT:</label>
         <input
           type="number"
@@ -24,6 +44,8 @@ export default function Form() {
           value={latitude}
           min={-90}
           max={90}
+          step={0.01}
+          onChange={onChange}
         />
         <br />
         <label htmlFor="longitude">LON:</label>
@@ -33,6 +55,8 @@ export default function Form() {
           value={longitude}
           min={-180}
           max={180}
+          step={0.01}
+          onChange={onChange}
         />
         <br />
         <Switch
