@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { IPrimaryApi } from "./IPrimaryApi";
 import { IAlternativeApi } from "./IAlternativeApi";
-
+import { IWeatherData } from "./IWeatherData";
 export default class Api {
   public async fetchAxios(
     latitude: string,
@@ -39,12 +39,24 @@ export default class Api {
         await axios.request(alternativeApiConfig)
       ).data;
 
-      return fetchResult;
+      const weatherData: IWeatherData = {
+        temperature: Math.round(fetchResult.currently.temperature),
+        pressure: Math.round(fetchResult.currently.pressure),
+        humidity: Math.round(fetchResult.currently.humidity * 100),
+      };
+
+      return weatherData;
     } else {
       const fetchResult: IPrimaryApi = (await axios.request(primaryApiConfig))
         .data;
 
-      return fetchResult;
+      const weatherData: IWeatherData = {
+        temperature: Math.round(fetchResult.data[0].temp),
+        pressure: Math.round(fetchResult.data[0].pres),
+        humidity: Math.round(fetchResult.data[0].rh),
+      };
+
+      return weatherData;
     }
   }
 }
