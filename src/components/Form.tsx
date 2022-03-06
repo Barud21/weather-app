@@ -34,10 +34,12 @@ export default function Form() {
 
     const api = new Api();
     const fetchApi = async () => {
-      const data =
-        formData.alternativeSource === true
-          ? await api.fetchAlternativeApi()
-          : await api.fetchPrimaryApi();
+      const data = await api.fetchAxios(
+        formData.latitude,
+        formData.longitude,
+        formData.alternativeSource
+      );
+
       return data;
     };
     const weatherData = fetchApi();
