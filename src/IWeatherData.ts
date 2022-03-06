@@ -1,5 +1,5 @@
 export interface IWeatherData {
-  temperature: number;
-  pressure: number;
-  humidity: number;
+  temperature: number | undefined;
+  pressure: number | undefined;
+  humidity: number | undefined;
 }
