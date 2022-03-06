@@ -3,6 +3,7 @@ import "./Form.css";
 import Switch from "react-switch";
 
 import Api from "../api";
+import { IWeatherData } from "../IWeatherData";
 
 const defaultFormData = {
   latitude: "",
@@ -10,10 +11,17 @@ const defaultFormData = {
   alternativeSource: false,
 };
 
+const defaultWeather: IWeatherData = {
+  temperature: NaN,
+  pressure: NaN,
+  humidity: NaN,
+};
+
 export default function Form() {
   const [formData, setFormData] = useState(defaultFormData);
   const { latitude, longitude, alternativeSource } = formData;
   const [checked, setChecked] = useState(alternativeSource);
+  const [weather, setWeather] = useState(defaultWeather);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({
@@ -34,15 +42,14 @@ export default function Form() {
 
     const api = new Api();
     const fetchApi = async () => {
-      const data = await api.fetchAxios(
+      const weatherData = await api.fetchAxios(
         formData.latitude,
         formData.longitude,
         formData.alternativeSource
       );
-
-      return data;
+      setWeather(weatherData);
     };
-    const weatherData = fetchApi();
+    fetchApi();
   };
 
   return (
@@ -79,6 +86,12 @@ export default function Form() {
         />
         <button type="submit">Display weather</button>
       </form>
+
+      <div>
+        <p>Temperature: {weather.temperature}°C</p>
+        <p>Pressure: {weather.pressure}hPa</p>
+        <p>Humidity: {weather.humidity}%</p>
+      </div>
     </>
   );
 }
