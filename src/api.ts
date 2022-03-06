@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { IPrimaryApi } from "./IPrimaryApi";
+import { IAlternativeApi } from "./IAlternativeApi";
 
 export default class Api {
   public async fetchAxios(
@@ -32,10 +34,17 @@ export default class Api {
       },
     };
 
-    const fetchResult = await axios(
-      alternativeSource ? alternativeApiConfig : primaryApiConfig
-    );
-    console.log(fetchResult.data);
-    return fetchResult.data;
+    if (alternativeSource) {
+      const fetchResult: IAlternativeApi = (
+        await axios.request(alternativeApiConfig)
+      ).data;
+
+      return fetchResult;
+    } else {
+      const fetchResult: IPrimaryApi = (await axios.request(primaryApiConfig))
+        .data;
+
+      return fetchResult;
+    }
   }
 }
