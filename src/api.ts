@@ -1,48 +1,41 @@
+import axios, { AxiosRequestConfig } from "axios";
+
 export default class Api {
-  public async fetchPrimaryApi() {
-    const fetchResult = await fetch(
-      "https://weatherbit-v1-mashape.p.rapidapi.com/current?lon=38.5&lat=-78.5",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-          "x-rapidapi-key": `${process.env.REACT_APP_RAPIDAPI_KEY}`,
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return fetchResult;
-  }
+  public async fetchAxios(
+    latitude: string,
+    longitude: string,
+    alternativeSource: boolean
+  ) {
+    const primaryApiConfig: AxiosRequestConfig = {
+      method: "GET",
+      url: "/current",
+      baseURL: "https://weatherbit-v1-mashape.p.rapidapi.com",
+      params: { lon: `${longitude}`, lat: `${latitude}` },
+      headers: {
+        "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+        "x-rapidapi-key": `${process.env.REACT_APP_RAPIDAPI_KEY}`,
+      },
+    };
 
-  public async fetchAlternativeApi() {
-    const fetchResult = await fetch(
-      "https://dark-sky.p.rapidapi.com/35.5,-78.5?exclude=minutely%2C%20hourly%2C%20daily%2C%20alerts%2C%20flags&units=si&lang=en",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "dark-sky.p.rapidapi.com",
-          "x-rapidapi-key": `${process.env.REACT_APP_RAPIDAPI_KEY}`,
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const alternativeApiConfig: AxiosRequestConfig = {
+      method: "GET",
+      url: `/${latitude},${longitude}`,
+      baseURL: "https://dark-sky.p.rapidapi.com",
+      params: {
+        exclude: "minutely, hourly, daily, alerts, flags",
+        units: "si",
+        lang: "en",
+      },
+      headers: {
+        "x-rapidapi-host": "dark-sky.p.rapidapi.com",
+        "x-rapidapi-key": `${process.env.REACT_APP_RAPIDAPI_KEY}`,
+      },
+    };
 
-    return fetchResult;
+    const fetchResult = await axios(
+      alternativeSource ? alternativeApiConfig : primaryApiConfig
+    );
+    console.log(fetchResult.data);
+    return fetchResult.data;
   }
 }
