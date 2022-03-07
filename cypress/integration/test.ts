@@ -11,6 +11,18 @@ describe("test", () => {
     // then
     resultBeforeSubmitting();
   });
+
+  it("checks if gets response after submitting data", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("52", "21");
+    submitData();
+
+    // then
+    resultAfterSubmitting();
+  });
 });
 
 function websiteIsOpened() {
@@ -22,8 +34,18 @@ function inputData(lat: string, lon: string) {
   cy.get(".longitude").type(lon);
 }
 
+function submitData() {
+  cy.get(".btn-submit").click();
+}
+
 function resultBeforeSubmitting() {
   cy.get(".temp").should("be.empty");
   cy.get(".pressure").should("be.empty");
   cy.get(".humidity").should("be.empty");
+}
+
+function resultAfterSubmitting() {
+  cy.get(".temp").should("not.equal", "");
+  cy.get(".pressure").should("not.equal", "");
+  cy.get(".humidity").should("not.equal", "");
 }
