@@ -1,4 +1,3 @@
-import { wait } from "@testing-library/user-event/dist/utils";
 import cypress from "cypress";
 
 describe("test", () => {
@@ -114,6 +113,18 @@ describe("test", () => {
 
     // then
     resultAfterSubmitting();
+  });
+
+  it("checks if does not get response after pressing switch but before submitting", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("52", "21");
+    clickToggleSwitch();
+
+    // then
+    resultBeforeSubmitting();
   });
 });
 
