@@ -66,6 +66,18 @@ describe("test", () => {
     // then
     resultAlternativeSource();
   });
+
+  it("checks if does not get response after submitting incorrect data", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("52.231", "21.982");
+    submitData();
+
+    // then
+    resultBeforeSubmitting();
+  });
 });
 
 function websiteIsOpened() {
