@@ -13,10 +13,12 @@ const LatInput: React.FC<{
         <input
           type="number"
           id="latitude"
+          className="latitude"
           value={value}
           min={-90}
           max={90}
           step={0.01}
+          maxLength={5}
           onChange={onChange}
           required
         />
@@ -36,10 +38,12 @@ const LonInput: React.FC<{
         <input
           type="number"
           id="longitude"
+          className="longitude"
           value={value}
           min={-180}
           max={180}
           step={0.01}
+          maxLength={5}
           onChange={onChange}
           required
         />
@@ -56,17 +60,33 @@ const SwitchToggle: React.FC<{
   ) => void;
   checked: boolean;
 }> = ({ onChange, checked }) => {
+  if (checked) {
+    document.getElementById("alternative-source")?.classList.add("bold");
+    document.getElementById("primary-source")?.classList.remove("bold");
+  } else {
+    document.getElementById("primary-source")?.classList.add("bold");
+    document.getElementById("alternative-source")?.classList.remove("bold");
+  }
+
   return (
     <>
-      <div className="container__switch">
-        Weatherbit
-        <Switch
-          onChange={onChange}
-          checked={checked}
-          uncheckedIcon={false}
-          checkedIcon={false}
-        />
-        DarkSky
+      <div>
+        <div className="container__switch">
+          <p className="primary-source bold" id="primary-source">
+            Weatherbit
+          </p>
+          <Switch
+            className="btn-switch"
+            onChange={onChange}
+            checked={checked}
+            uncheckedIcon={false}
+            checkedIcon={false}
+            onColor="#888"
+          />
+          <p className="alternative-source" id="alternative-source">
+            DarkSky
+          </p>
+        </div>
       </div>
     </>
   );
@@ -75,7 +95,9 @@ const SwitchToggle: React.FC<{
 const SubmitButton: React.FC<{}> = () => {
   return (
     <>
-      <button type="submit">Display weather</button>
+      <button className="btn-submit" type="submit">
+        Display weather
+      </button>
     </>
   );
 };
