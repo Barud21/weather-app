@@ -55,6 +55,17 @@ describe("test", () => {
     // then
     resultPrimarySource();
   });
+
+  it("checks if alternative source is selected", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    clickToggleSwitch();
+
+    // then
+    resultAlternativeSource();
+  });
 });
 
 function websiteIsOpened() {
@@ -94,4 +105,8 @@ function clickToggleSwitch() {
 
 function resultPrimarySource() {
   cy.get(".primary-source").should("have.class", "bold");
+}
+
+function resultAlternativeSource() {
+  cy.get(".alternative-source").should("have.class", "bold");
 }
