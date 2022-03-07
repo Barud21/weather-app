@@ -5,3 +5,15 @@
   gap: 10px;
   margin: 10px;
 }
+
+.primary-source {
+  font-size: 1rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.alternative-source {
+  font-size: 1rem;
+}
