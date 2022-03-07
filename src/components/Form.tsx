@@ -8,8 +8,8 @@ const LatInput: React.FC<{
 }> = ({ value, onChange }) => {
   return (
     <>
-      <div>
-        <label htmlFor="latitude">LAT:</label>
+      <div className="input">
+        <label htmlFor="latitude">LAT: </label>
         <input
           type="number"
           id="latitude"
@@ -33,8 +33,8 @@ const LonInput: React.FC<{
 }> = ({ value, onChange }) => {
   return (
     <>
-      <div>
-        <label htmlFor="longitude">LON:</label>
+      <div className="input">
+        <label htmlFor="longitude">LON: </label>
         <input
           type="number"
           id="longitude"
@@ -82,11 +82,14 @@ const SwitchToggle: React.FC<{
             uncheckedIcon={false}
             checkedIcon={false}
             onColor="#888"
+            height={25}
+            handleDiameter={23}
           />
           <p className="alternative-source" id="alternative-source">
             DarkSky
           </p>
         </div>
+        <div className="source">Data source</div>
       </div>
     </>
   );
