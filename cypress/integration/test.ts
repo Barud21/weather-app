@@ -34,6 +34,17 @@ describe("test", () => {
     // then
     resultWhenDataIsMissing();
   });
+
+  it("checks if does not get response when longitude is missing", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("52", " ");
+
+    // then
+    resultWhenDataIsMissing();
+  });
 });
 
 function websiteIsOpened() {
