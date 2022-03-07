@@ -118,21 +118,21 @@ function submitData() {
 }
 
 function resultBeforeSubmitting() {
-  cy.get(".temp").should("be.empty");
-  cy.get(".pressure").should("be.empty");
-  cy.get(".humidity").should("be.empty");
+  cy.get("#temp").should("be.empty");
+  cy.get("#pressure").should("be.empty");
+  cy.get("#humidity").should("be.empty");
 }
 
 function resultAfterSubmitting() {
-  cy.get(".temp").should("not.equal", "");
-  cy.get(".pressure").should("not.equal", "");
-  cy.get(".humidity").should("not.equal", "");
+  cy.get("#temp").should("not.be.empty");
+  cy.get("#pressure").should("not.be.empty");
+  cy.get("#humidity").should("not.be.empty");
 }
 
 function resultWhenDataIsMissing() {
-  cy.get(".temp").should("be.empty");
-  cy.get(".pressure").should("be.empty");
-  cy.get(".humidity").should("be.empty");
+  cy.get("#temp").should("be.empty");
+  cy.get("#pressure").should("be.empty");
+  cy.get("#humidity").should("be.empty");
 }
 
 function clickToggleSwitch() {
