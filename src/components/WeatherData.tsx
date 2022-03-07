@@ -34,7 +34,9 @@ export default function WeatherData() {
     setChecked(nextChecked);
     formData.alternativeSource = !formData.alternativeSource;
 
-    callApi();
+    if (weather.temperature !== undefined) {
+      callApi();
+    }
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,6 +44,12 @@ export default function WeatherData() {
     setFormData(formData);
 
     callApi();
+  };
+
+  const handleKeyPress = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      callApi();
+    }
   };
 
   const callApi = () => {
@@ -59,12 +67,12 @@ export default function WeatherData() {
 
   return (
     <>
-      <div className="container">
+      <div className="container-weather-data">
         <h1>Weather App</h1>
         <br />
         <h3>Input latitude and longitude</h3>
         <hr />
-        <form className="form" onSubmit={onSubmit}>
+        <form className="form" onSubmit={onSubmit} onKeyPress={handleKeyPress}>
           <div className="inputs">
             <LatInput value={latitude} onChange={onChange}></LatInput>
             <LonInput value={longitude} onChange={onChange}></LonInput>
