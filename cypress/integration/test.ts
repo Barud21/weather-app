@@ -45,6 +45,16 @@ describe("test", () => {
     // then
     resultWhenDataIsMissing();
   });
+
+  it("checks if primary source is selected", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+
+    // then
+    resultPrimarySource();
+  });
 });
 
 function websiteIsOpened() {
@@ -76,4 +86,12 @@ function resultWhenDataIsMissing() {
   cy.get(".temp").should("be.empty");
   cy.get(".pressure").should("be.empty");
   cy.get(".humidity").should("be.empty");
+}
+
+function clickToggleSwitch() {
+  cy.get(".btn-switch").click();
+}
+
+function resultPrimarySource() {
+  cy.get(".primary-source").should("have.class", "bold");
 }
