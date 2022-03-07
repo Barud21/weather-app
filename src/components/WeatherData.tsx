@@ -1,5 +1,5 @@
 import "./WeatherData.css";
-import { IWeatherData } from "../IWeatherData";
+import { IWeatherData } from "../interfaces/IWeatherData";
 import { LatInput, LonInput, SwitchToggle, SubmitButton } from "./Form";
 import { useState } from "react";
 import Api from "../api";

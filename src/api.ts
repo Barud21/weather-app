@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { IPrimaryApi } from "./IPrimaryApi";
-import { IAlternativeApi } from "./IAlternativeApi";
-import { IWeatherData } from "./IWeatherData";
+import { IPrimaryApi } from "./interfaces/IPrimaryApi";
+import { IAlternativeApi } from "./interfaces/IAlternativeApi";
+import { IWeatherData } from "./interfaces/IWeatherData";
 export default class Api {
   public async fetchAxios(
     latitude: string,
