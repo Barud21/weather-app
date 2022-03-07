@@ -27,7 +27,6 @@ export default function WeatherData() {
       ...prevState,
       [e.target.id]: e.target.value,
     }));
-    console.log(formData);
   };
 
   const handleChange = (nextChecked: boolean) => {
@@ -75,13 +74,20 @@ export default function WeatherData() {
               checked={checked}
             ></SwitchToggle>
           </div>
+
           <SubmitButton></SubmitButton>
         </form>
         <br />
         <div className="weather-display">
-          <p>Temperature: {weather && weather.temperature}°C</p>
-          <p>Pressure: {weather && weather.pressure}hPa</p>
-          <p>Humidity: {weather && weather.humidity}%</p>
+          <p>
+            Temperature: <span className="temp">{weather.temperature}</span>°C
+          </p>
+          <p>
+            Pressure: <span className="pressure">{weather.pressure}</span>hPa
+          </p>
+          <p>
+            Humidity: <span className="humidity">{weather.humidity}</span>%
+          </p>
         </div>
       </div>
     </>
