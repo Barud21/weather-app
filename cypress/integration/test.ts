@@ -1,3 +1,4 @@
+import { wait } from "@testing-library/user-event/dist/utils";
 import cypress from "cypress";
 
 describe("test", () => {
@@ -102,6 +103,18 @@ describe("test", () => {
     // then
     resultBeforeSubmitting();
   });
+
+  it("checks if gets response after pressing Enter", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("52", "21");
+    pressKey();
+
+    // then
+    resultAfterSubmitting();
+  });
 });
 
 function websiteIsOpened() {
@@ -145,4 +158,8 @@ function resultPrimarySource() {
 
 function resultAlternativeSource() {
   cy.get(".alternative-source").should("have.class", "bold");
+}
+
+function pressKey() {
+  cy.get("body").type("{enter}");
 }
