@@ -1,17 +1,20 @@
 body {
-  width: 80%;
+  display: flex;
   align-content: center;
   align-items: center;
   justify-content: center;
-  margin: 5%;
-  background-color: aquamarine;
+  margin: 2rem;
+  background-color: #00cf91;
 }
 
-.container {
-  background-color: antiquewhite;
+.container-weather-data {
+  width: 320px;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
 }
 
 .form {
@@ -24,5 +27,6 @@ body {
 .inputs {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 1rem;
+  padding: 0.75rem 0 0.75rem 0;
 }
