@@ -3,6 +3,7 @@ import { IWeatherData } from "../IWeatherData";
 import { LatInput, LonInput, SwitchToggle, SubmitButton } from "./Form";
 import { useState } from "react";
 import Api from "../api";
+import { Display } from "./Display";
 
 const defaultFormData = {
   latitude: "",
@@ -74,20 +75,15 @@ export default function WeatherData() {
               checked={checked}
             ></SwitchToggle>
           </div>
-
           <SubmitButton></SubmitButton>
         </form>
         <br />
         <div className="weather-display">
-          <p>
-            Temperature: <span className="temp">{weather.temperature}</span>°C
-          </p>
-          <p>
-            Pressure: <span className="pressure">{weather.pressure}</span>hPa
-          </p>
-          <p>
-            Humidity: <span className="humidity">{weather.humidity}</span>%
-          </p>
+          <Display
+            temperature={weather.temperature}
+            pressure={weather.pressure}
+            humidity={weather.humidity}
+          />
         </div>
       </div>
     </>
