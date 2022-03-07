@@ -78,6 +78,30 @@ describe("test", () => {
     // then
     resultBeforeSubmitting();
   });
+
+  it("checks if does not get response after submitting data out of range", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("100", "200");
+    submitData();
+
+    // then
+    resultBeforeSubmitting();
+  });
+
+  it("checks if does not get response after submitting data out of range", () => {
+    // given
+    websiteIsOpened();
+
+    // when
+    inputData("-100", "-200");
+    submitData();
+
+    // then
+    resultBeforeSubmitting();
+  });
 });
 
 function websiteIsOpened() {
