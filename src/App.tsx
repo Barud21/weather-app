@@ -1,7 +1,9 @@
+import WeatherData from "./components/WeatherData";
+
 function App() {
   return (
     <div>
-      Temperature: <span className="temperature">10</span>
+      <WeatherData></WeatherData>
     </div>
   );
 }

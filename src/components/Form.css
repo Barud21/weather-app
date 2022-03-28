@@ -1,0 +1,49 @@
+.container__switch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0 0.25rem 0;
+}
+
+.primary-source {
+  font-size: 1rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.alternative-source {
+  font-size: 1rem;
+}
+
+.latitude {
+  width: 5rem;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.longitude {
+  width: 5.5rem;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.input {
+  gap: 5rem;
+  font-size: 1.25rem;
+}
+
+.btn-submit {
+  margin-top: 3rem;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #34f1b9;
+}
+
+.source {
+  font-size: 0.9rem;
+  text-align: center;
+}
